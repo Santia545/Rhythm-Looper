@@ -5,8 +5,6 @@ $('#url').on('change', function () {
     videoId = getVideoId(inputValue);
     player.destroy();
     player = new YT.Player('player', {
-        
-        width: '100%',
         videoId: videoId,
         events: {
             'onReady': onPlayerReady,

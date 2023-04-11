@@ -3,23 +3,31 @@ let tag = document.createElement('script');
 let externalTag = document.getElementById('myTag');
 tag.src = "https://www.youtube.com/iframe_api";
 document.body.insertBefore(tag, externalTag);
-/*document.getElementById('btn').onclick = () => {
+document.getElementById('btn').onclick = () => {
     updateSection();
-}*/
+}
 
 //Set up Youtube Iframe API.
 let player;
 function onYouTubeIframeAPIReady() {
     player = new YT.Player('player', {
-        width: '100%',
-        
         videoId: videoId,
         events: {
             'onReady': onPlayerReady,
             'onStateChange': onPlayerStateChange
         },
     });
+    
 }
+
+// Resize player on window resize
+window.addEventListener('resize', function() {
+    const playerWrapper = document.getElementById('player');
+    const playerWidth = playerWrapper.getBoundingClientRect().width;
+    const playerHeight = playerWidth * 9 / 16; 
+    console.log(`width: ${playerWidth} height: ${playerHeight}`);
+    player.setSize(playerWidth, playerHeight);
+});
 
 function onPlayerStateChange(event) {
     console.log(event.data)
@@ -27,6 +35,11 @@ function onPlayerStateChange(event) {
 }
 
 function onPlayerReady(event) {
+    const playerWrapper = document.getElementById('player');
+    const playerWidth = playerWrapper.offsetWidth;
+    const playerHeight = playerWidth * 9 / 16; 
+    console.log(`width: ${playerWidth} height: ${playerHeight}`);
+    player.setSize(playerWidth, playerHeight);
     //alert("ready:"+player.getDuration());
     let length = player.getDuration() - 1;
     document.getElementById('stop').value = length;
@@ -38,7 +51,6 @@ function updateSection() {
         videoId: videoId,
         startSeconds: Number(startTime),
         endSeconds: Number(endTime),
-
     });
     player.playVideo();
 }
