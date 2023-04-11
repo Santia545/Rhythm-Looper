@@ -1,0 +1,46 @@
+.looper{
+    width:80%;
+    margin-left:auto;
+    margin-right:auto;
+}
+.slider {
+    position: relative;
+    width: 100%;
+    height: 25px;
+    background-color: hsl(0, 0%, 90%);
+    border-radius: 5px;
+    margin-top: 8px;
+    margin-bottom: 10px;
+
+}
+input{
+    width: 99.3%;
+    margin-bottom: 10px;
+}
+.slider input[type="range"]::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 0px;
+    background-color: #000000;
+}
+
+.slider input[type="range"] {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    appearance: none;
+    background-color: transparent;
+}
+
+.slider input[type="range"]::-webkit-slider-thumb {
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    background-color: #ffffff;
+    border-radius: 50%;
+    border: 1px solid #999999;
+    cursor: pointer;
+}
+
+.slider input[type="range"]::-webkit-slider-thumb:hover {
+    background-color: #000000;
+}
