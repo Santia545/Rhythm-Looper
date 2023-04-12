@@ -21,73 +21,85 @@ function checkMinSliderValue(event) {
     console.log(`min slider: new value ${value}, current Max value ${Number(slider2.value) - 1}`);
     console.log(`${value}<${Number(slider2.value - 1)}?${value < Number(slider2.value) - 1}`);
     if (value < Number(slider2.value - 1)) {
-        inputStart.value = value;
+        inputStart.value = fancyTimeFormat(value);
         slider1.value = value;
-        console.log("value changed to: " + event.target.value);
         startTime = value;
     } else {
-        inputStart.value = Number(slider2.value) - 1;
+        inputStart.value = fancyTimeFormat(Number(slider2.value) - 1);
         slider1.value = Number(slider2.value) - 1;
     }
-    console.log("Current start slider value" + Number(slider1.value));
 }
 function checkMaxSliderValue(event) {
     let value = Number(event.target.value);
-    console.log(`max slider: new value ${value}, current min value ${Number(slider1.value) + 1}`);
-    console.log(`${value}>${slider1.value + 1}?${value > Number(slider1.value) + 1}`);
     if (value > Number(slider1.value) + 1) {
-        inputStop.value = value;
+        inputStop.value = fancyTimeFormat(value);
         slider2.value = value;
         endTime = value;
     } else {
-        inputStop.value = Number(slider1.value) + 1;
+        inputStop.value = fancyTimeFormat(Number(slider1.value) + 1);
         slider2.value = Number(slider1.value) + 1;
     }
-    console.log("Current stop slider value" + Number(slider2.value));
 }
 function checkStartValue(event) {
-    let value = Number(event.target.value);
+    var input = event.target;
+    let value = timeToSeconds(event.target.value);
+    if (!input.checkValidity()) {
+        alert("Mal formato de tiempo");
+        inputStart.value = fancyTimeFormat(Number(slider1.value));
+        return;
+    } 
     if (value < 0 || value >= Number(slider2.value)) {
         inputStart.value = Number(slider1.value);
     } else {
         slider1.value = value;
         startTime = value;
     }
-    console.log("Current start slider value" + slider1.value);
 }
 function checkStopValue(event) {
-    let value = Number(event.target.value);
+    var input = event.target;
+    let value = timeToSeconds(event.target.value);
+    if (!input.checkValidity()) {
+        alert("Mal formato de tiempo");
+        inputStop.value = fancyTimeFormat(Number(slider2.value));
+        return;
+    } 
     if (value > Number(slider2.max) || value <= Number(slider1.value)) {
         inputStop.value = Number(slider2.value);
     } else {
         slider2.value = value;
         stopTime = value;
     }
-    console.log("Current stop slider value" + Number(slider1.value));
 }
 
-function fancyTimeFormat(duration) {
-    // Hours, minutes and seconds
-    const hrs = ~~(duration / 3600);
-    const mins = ~~((duration % 3600) / 60);
-    const secs = ~~duration % 60;
-    // Output like "1:01" or "4:03:59" or "123:03:59"
-    let ret = "";
-    if (hrs > 0) {
-      ret += "" + hrs + ":" + (mins < 10 ? "0" : "");
-    }
-    ret += "" + mins + ":" + (secs < 10 ? "0" : "");
-    ret += "" + secs;
-    return ret;
+
+  function incrementTimeValue(increment) {
+    var timeInput = document.getElementById("myTimeInput");
+    var currentTime = timeInput.value;
+    var currentTimeArray = currentTime.split(":");
+    var hours = parseInt(currentTimeArray[0]);
+    var minutes = parseInt(currentTimeArray[1]);
+    var seconds = parseInt(currentTimeArray[2]);
+    
+    // Perform increment/decrement logic for hours, minutes, and seconds here
+    hours += increment;
+    
+    // Ensure hours, minutes, and seconds are within valid time range
+    hours = Math.max(0, Math.min(23, hours));
+    minutes = Math.max(0, Math.min(59, minutes));
+    seconds = Math.max(0, Math.min(59, seconds));
+    
+    // Update time input value with new time
+    timeInput.value = ("0" + hours).slice(-2) + ":" + ("0" + minutes).slice(-2) + ":" + ("0" + seconds).slice(-2);
   }
-  console.log(
-    fancyTimeFormat(1),
-    fancyTimeFormat(10),
-    fancyTimeFormat(100),
-    fancyTimeFormat(1000),
-    fancyTimeFormat(10000),
-  );
 
-
-
+/*
+  document.getElementById('start').addEventListener('input', function(event) {
+    var input = event.target;
+    if (!input.checkValidity()) {
+        alert("Mal formato de tiempo");
+    } else {
+        alert("MBuen formato de tiempo");
+    }
+  });
+*/
 

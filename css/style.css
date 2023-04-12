@@ -1,4 +1,3 @@
-
 @media (max-width: 480px) {
     .looper {
         text-align: center;
@@ -6,7 +5,7 @@
         width: 80%;
         margin-left: auto;
         margin-right: auto;
-    }  
+    }
 }
 
 @media (min-width: 481px) and (max-width: 767px) {
@@ -28,9 +27,11 @@
         margin-right: auto;
     }
 }
-iframe{
+
+iframe {
     width: 100%;
 }
+
 input {
     width: 100%;
     margin-bottom: 10px;
@@ -77,6 +78,7 @@ input {
     background-color: #000000;
     transform: scale(1.2);
 }
+
 button {
     padding: 1em 2em;
     font-size: 1.2em;
@@ -89,6 +91,35 @@ button {
     text-align: center;
     transition: background-color 0.2s ease-in-out;
 }
+
 button:hover {
     background-color: lightgray;
+}
+
+.time-input-container {
+    position: relative;
+}
+
+.time-input-container input[type="text"] {
+    padding-right: 40px;
+    /* Add space for arrow buttons on the right */
+}
+
+.time-input-container .increment-arrow {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    /* Adjust the position of arrow buttons */
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+
+.time-input-container .increment-arrow.up {
+    top: 20%;
+    /* Adjust the position of up arrow button */
+}
+
+.time-input-container .increment-arrow.down {
+    top: 80%;
+    /* Adjust the position of down arrow button */
 }
