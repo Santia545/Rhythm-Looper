@@ -1,6 +1,7 @@
 
 const inputStart = document.getElementById('start');
 const inputStop = document.getElementById('stop');
+const inputSpeed = document.getElementById('speed');
 
 $('#url').on('change', function () {
     alert("change");
@@ -18,7 +19,7 @@ $('#url').on('change', function () {
 
 
 function checkMinSliderValue(event) {
-    player.seek 
+    player.seek
     let value = Number(event.target.value);
     console.log(`min slider: new value ${value}, current Max value ${Number(slider2.value) - 1}`);
     console.log(`${value}<${Number(slider2.value - 1)}?${value < Number(slider2.value) - 1}`);
@@ -50,7 +51,7 @@ function checkStartValue(event) {
         alert("Mal formato de tiempo");
         inputStart.value = fancyTimeFormat(Number(slider1.value));
         return;
-    } 
+    }
     if (value < 0 || value >= Number(slider2.value)) {
         inputStart.value = fancyTimeFormat(Number(slider1.value));
     } else {
@@ -61,12 +62,11 @@ function checkStartValue(event) {
 function checkStopValue(event) {
     var input = event.target;
     let value = timeToSeconds(event.target.value);
-    console.log(value);
     if (!input.checkValidity()) {
         alert("Mal formato de tiempo");
         inputStop.value = fancyTimeFormat(Number(slider2.value));
         return;
-    } 
+    }
     if (value > Number(slider2.max) || value <= Number(slider1.value)) {
         inputStop.value = fancyTimeFormat(Number(slider2.value));
     } else {
@@ -75,15 +75,16 @@ function checkStopValue(event) {
     }
 }
 
+function checkSliderValue(event) {
+    let value = event.target.value;
+    console.log("nuevo valor " + value + " viejo valor: " + inputSpeed.value);
+    inputSpeed.value = Number(value);
+    player.setPlaybackRate(Number(slider3.value)); // set to half speed
+}
+function checkSpeedValue(event) {
+    let value = event.target.value;
+    console.log("nuevo valor " + value);
+    slider3.value = value;
+    player.setPlaybackRate(Number(slider3.value)); // set to half speed
 
-/*
-  document.getElementById('start').addEventListener('input', function(event) {
-    var input = event.target;
-    if (!input.checkValidity()) {
-        alert("Mal formato de tiempo");
-    } else {
-        alert("MBuen formato de tiempo");
-    }
-  });
-*/
-
+}

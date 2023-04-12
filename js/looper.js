@@ -5,6 +5,7 @@ let startTime = 0;
 let endTime = 100;
 const slider1 = document.getElementById('slider1');
 const slider2 = document.getElementById('slider2');
+const slider3 = document.getElementById('slider3');
 tag.src = "https://www.youtube.com/iframe_api";
 document.body.insertBefore(tag, externalTag);
 document.getElementById('btn').onclick = () => {
@@ -31,12 +32,11 @@ window.addEventListener('resize', function () {
     const playerHeight = playerWidth * 9 / 16;
     player.setSize(playerWidth, playerHeight);
 });
-let interval=null;
+let interval = null;
 function onPlayerStateChange(event) {
-    console.log(event.data)
     // Check if player state is PLAYING
     if (event.data === YT.PlayerState.PLAYING) {
-        interval=setInterval(function () {
+        interval = setInterval(function () {
             var currentTime = player.getCurrentTime();
             // Check if current playback time is greater than or equal to the desired time
             if (currentTime >= endTime) {
@@ -44,14 +44,15 @@ function onPlayerStateChange(event) {
                 player.seekTo(startTime);
             }
         }, 1000);
-    }else{
+    } else {
         clearInterval(interval);
-        interval=null;
+        interval = null;
     }
     if (event.data == 0) { player.seekTo(startTime) }
 }
 
 function onPlayerReady(event) {
+    event.target.setPlaybackRate(Number(slider3.value)); // set to half speed
     const playerWrapper = document.getElementById('player');
     const playerWidth = playerWrapper.offsetWidth;
     const playerHeight = playerWidth * 9 / 16;
