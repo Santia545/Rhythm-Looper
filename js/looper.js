@@ -25,7 +25,6 @@ window.addEventListener('resize', function() {
     const playerWrapper = document.getElementById('player');
     const playerWidth = playerWrapper.getBoundingClientRect().width;
     const playerHeight = playerWidth * 9 / 16; 
-    console.log(`width: ${playerWidth} height: ${playerHeight}`);
     player.setSize(playerWidth, playerHeight);
 });
 
