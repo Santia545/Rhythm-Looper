@@ -1,6 +1,10 @@
-let videoId = 'vabnZ9-ex7o';
+let videoId = '0zivUr36390';
 let tag = document.createElement('script');
 let externalTag = document.getElementById('myTag');
+let startTime=0;
+let endTime=100;
+const slider1 = document.getElementById('slider1');
+const slider2 = document.getElementById('slider2');
 tag.src = "https://www.youtube.com/iframe_api";
 document.body.insertBefore(tag, externalTag);
 document.getElementById('btn').onclick = () => {
@@ -40,12 +44,21 @@ function onPlayerReady(event) {
     console.log(`width: ${playerWidth} height: ${playerHeight}`);
     player.setSize(playerWidth, playerHeight);
     //alert("ready:"+player.getDuration());
-    let length = player.getDuration() - 1;
+    let length = Number(player.getDuration()-1);
+    slider1.max = length;
+    slider1.value = 0;
+    slider2.min = 0;
+    slider2.max = length;
+    slider2.value = length;
+    startTime=0;
+    endTime=length;
     document.getElementById('stop').value = length;
+    document.getElementById('slider2').value = length;
+
 }
 function updateSection() {
-    let startTime = document.getElementById('start').value;
-    let endTime = document.getElementById('stop').value;
+    startTime = document.getElementById('start').value;
+    endTime = document.getElementById('stop').value;
     player.loadVideoById({
         videoId: videoId,
         startSeconds: Number(startTime),

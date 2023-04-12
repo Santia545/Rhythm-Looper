@@ -1,4 +1,7 @@
 
+const inputStart = document.getElementById('start');
+const inputStop = document.getElementById('stop');
+
 $('#url').on('change', function () {
     alert("change");
     var inputValue = $(this).val();
@@ -11,11 +14,58 @@ $('#url').on('change', function () {
             'onStateChange': onPlayerStateChange
         },
     });
-
 });
 
+function checkMinSliderValue(event) {
+    let value = Number(event.target.value);
+    console.log(`min slider: new value ${value}, current Max value ${Number(slider2.value) - 1}`);
+    console.log(`${value}<${Number(slider2.value - 1)}?${value < Number(slider2.value) - 1}`);
 
-
+    if (value < Number(slider2.value - 1)) {
+        inputStart.value = value;
+        slider1.value = value;
+        console.log("value changed to: " + event.target.value);
+        startTime = value;
+    } else {
+        inputStart.value = Number(slider2.value) - 1;
+        slider1.value = Number(slider2.value) - 1;
+    }
+    console.log("Current start slider value" + Number(slider1.value));
+}
+function checkMaxSliderValue(event) {
+    let value = Number(event.target.value);
+    console.log(`max slider: new value ${value}, current min value ${Number(slider1.value) + 1}`);
+    console.log(`${value}>${slider1.value + 1}?${value > Number(slider1.value) + 1}`);
+    if (value > Number(slider1.value) + 1) {
+        inputStop.value = value;
+        slider2.value = value;
+        endTime = value;
+    } else {
+        inputStop.value = Number(slider1.value) + 1;
+        slider2.value = Number(slider1.value) + 1;
+    }
+    console.log("Current stop slider value" + Number(slider2.value));
+}
+function checkStartValue(event) {
+    let value = Number(event.target.value);
+    if (value < 0 || value >= Number(slider2.value)) {
+        inputStart.value = Number(slider1.value);
+    } else {
+        slider1.value = value;
+        startTime = value;
+    }
+    console.log("Current start slider value" + slider1.value);
+}
+function checkStopValue(event) {
+    let value = Number(event.target.value);
+    if (value > Number(slider2.max) || value <= Number(slider1.value)) {
+        inputStop.value = Number(slider2.value);
+    } else {
+        slider2.value = value;
+        stopTime = value;
+    }
+    console.log("Current stop slider value" + Number(slider1.value));
+}
 
 
 
