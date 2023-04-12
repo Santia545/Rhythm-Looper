@@ -1,35 +1,49 @@
+.looper{
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: Arial, sans-serif;
+
+}
+
 @media (max-width: 480px) {
     .looper {
-        text-align: center;
         height: 100%;
         width: 80%;
-        margin-left: auto;
-        margin-right: auto;
     }
 }
 
 @media (min-width: 481px) and (max-width: 767px) {
     .looper {
-        text-align: center;
         height: 100%;
         width: 80%;
-        margin-left: auto;
-        margin-right: auto;
     }
 }
 
 @media (min-width: 768px) {
     .looper {
-        text-align: center;
         height: 100%;
         width: 50%;
-        margin-left: auto;
-        margin-right: auto;
     }
 }
 
 iframe {
     width: 100%;
+}
+
+input[type="number"], input[type="text"]{
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 8px;
+    font-size: 16px;
+    color: #333;
+    width: 98%;
+}
+
+input[type="number"]:focus,input[type="text"]:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
 }
 
 input {
@@ -69,14 +83,14 @@ input {
     height: 20px;
     background-color: #ffffff;
     border-radius: 50%;
-    border: 1px solid #999999;
+    border: 1px solid #000000;
     cursor: pointer;
     transition: transform 0.2s;
 }
 
 .slider input[type="range"]::-webkit-slider-thumb:hover {
     background-color: #000000;
-    transform: scale(1.2);
+    transform: scale(1.4);
 }
 
 button {
