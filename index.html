@@ -13,15 +13,23 @@
     <div class="looper">
         <input type="text" id="url" placeholder='Insert video url'
             value="https://www.youtube.com/watch?v=0zivUr36390&ab_channel=MusicRadarClan"><br>
-       <!-- <input type="text" id="url" placeholder='Insert video url'
+        <!-- <input type="text" id="url" placeholder='Insert video url'
             value="https://www.youtube.com/watch?v=vabnZ9-ex7o&ab_channel=NirvanaVEVO"><br>-->
         <div id="player"></div><br>
         <div class="slider">
-            <input id="slider1" type="range" min="0" max="100" value="0" oninput="checkMinSliderValue(event)" >
+            <input id="slider1" type="range" min="0" max="100" value="0" oninput="checkMinSliderValue(event)">
             <input id="slider2" type="range" min="0" max="100" value="100" oninput="checkMaxSliderValue(event)">
         </div>
-        <input type="text" pattern="([0-9]+:)?([0-9]+:)?[0-9]+(.[0-9]*)?" title="Please enter time in the format HH:MM:SS or MM:SS or SS" id="start" placeholder='Insert start time' value="0:00" min="0" onchange="checkStartValue(event)">
-        <input type="text" pattern="([0-9]+:)?([0-9]+:)?[0-9]+(.[0-9]*)?" title="Please enter time in the format HH:MM:SS or MM:SS or SS" id="stop" placeholder="Insert end time" min="1" onchange="checkStopValue(event)">
+        <div style="text-align: left;">
+            <label for="start">Tiempo de inicio:</label>
+            <input type="text" pattern="([0-9]+:)?([0-9]+:)?[0-9]+(.[0-9]*)?"
+                title="Please enter time in the format HH:MM:SS or MM:SS or SS" id="start"
+                placeholder='Insert start time' value="0:00" min="0" onchange="checkStartValue(event)">
+            <label for="stop">Tiempo de fin:</label>
+            <input type="text" pattern="([0-9]+:)?([0-9]+:)?[0-9]+(.[0-9]*)?"
+                title="Please enter time in the format HH:MM:SS or MM:SS or SS" id="stop" placeholder="Insert end time"
+                min="1" onchange="checkStopValue(event)">
+        </div>
         <button id="btn"> Loop </button>
 
         <script src="js/looper.js" type="text/javascript"></script>

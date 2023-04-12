@@ -8,7 +8,7 @@ const slider2 = document.getElementById('slider2');
 tag.src = "https://www.youtube.com/iframe_api";
 document.body.insertBefore(tag, externalTag);
 document.getElementById('btn').onclick = () => {
-    updateSection();
+    player.seekTo(startTime);
 }
 
 //Set up Youtube Iframe API.
@@ -69,16 +69,7 @@ function onPlayerReady(event) {
     document.getElementById('slider2').value = length;
 
 }
-function updateSection() {
-    startTime = document.getElementById('start').value;
-    endTime = document.getElementById('stop').value;
-    player.loadVideoById({
-        videoId: videoId,
-        startSeconds: timeToSeconds(startTime),
-        endSeconds: timeToSeconds(endTime),
-    });
-    player.playVideo();
-}
+
 function fancyTimeFormat(duration) {
     // Hours, minutes and seconds
     const hrs = ~~(duration / 3600);
