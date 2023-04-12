@@ -16,6 +16,7 @@ $('#url').on('change', function () {
     });
 });
 
+
 function checkMinSliderValue(event) {
     let value = Number(event.target.value);
     console.log(`min slider: new value ${value}, current Max value ${Number(slider2.value) - 1}`);
