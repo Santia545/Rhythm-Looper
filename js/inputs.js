@@ -20,7 +20,6 @@ function checkMinSliderValue(event) {
     let value = Number(event.target.value);
     console.log(`min slider: new value ${value}, current Max value ${Number(slider2.value) - 1}`);
     console.log(`${value}<${Number(slider2.value - 1)}?${value < Number(slider2.value) - 1}`);
-
     if (value < Number(slider2.value - 1)) {
         inputStart.value = value;
         slider1.value = value;
@@ -67,6 +66,27 @@ function checkStopValue(event) {
     console.log("Current stop slider value" + Number(slider1.value));
 }
 
+function fancyTimeFormat(duration) {
+    // Hours, minutes and seconds
+    const hrs = ~~(duration / 3600);
+    const mins = ~~((duration % 3600) / 60);
+    const secs = ~~duration % 60;
+    // Output like "1:01" or "4:03:59" or "123:03:59"
+    let ret = "";
+    if (hrs > 0) {
+      ret += "" + hrs + ":" + (mins < 10 ? "0" : "");
+    }
+    ret += "" + mins + ":" + (secs < 10 ? "0" : "");
+    ret += "" + secs;
+    return ret;
+  }
+  console.log(
+    fancyTimeFormat(1),
+    fancyTimeFormat(10),
+    fancyTimeFormat(100),
+    fancyTimeFormat(1000),
+    fancyTimeFormat(10000),
+  );
 
 
 
