@@ -43,7 +43,7 @@ function onPlayerStateChange(event) {
                 // Do something when user reaches the desired point in the video
                 player.seekTo(startTime);
             }
-        }, 1000);
+        }, 500);
     } else {
         clearInterval(interval);
         interval = null;
