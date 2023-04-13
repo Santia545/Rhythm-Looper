@@ -38,7 +38,7 @@ function onPlayerStateChange(event) {
     if (event.data === YT.PlayerState.PLAYING) {
         interval = setInterval(function () {
             var currentTime = player.getCurrentTime();
-            endTime = timeToSeconds(document.getElementById('stop').value);
+            endTime = document.getElementById('slider2').value;
             console.log(`current time: ${currentTime}>=endTime: ${endTime}?${currentTime >= endTime}`);
             // Check if current playback time is greater than or equal to the desired time
             if (currentTime >= endTime) {
