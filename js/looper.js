@@ -38,12 +38,14 @@ function onPlayerStateChange(event) {
     if (event.data === YT.PlayerState.PLAYING) {
         interval = setInterval(function () {
             var currentTime = player.getCurrentTime();
+            endTime = timeToSeconds(document.getElementById('stop').value);
+            console.log(`current time: ${currentTime}>=endTime: ${endTime}?${currentTime >= endTime}`);
             // Check if current playback time is greater than or equal to the desired time
             if (currentTime >= endTime) {
                 // Do something when user reaches the desired point in the video
                 player.seekTo(startTime);
             }
-        }, 500);
+        }, 100);
     } else {
         clearInterval(interval);
         interval = null;
