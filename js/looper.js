@@ -10,9 +10,9 @@ tag.src = "https://www.youtube.com/iframe_api";
 document.body.insertBefore(tag, externalTag);
 document.getElementById('btn').onclick = () => {
     player.seekTo(startTime);
+    player.playVideo();
 }
 
-//Set up Youtube Iframe API.
 let player;
 function onYouTubeIframeAPIReady() {
     player = new YT.Player('player', {
@@ -25,7 +25,6 @@ function onYouTubeIframeAPIReady() {
 
 }
 
-// Resize player on window resize
 window.addEventListener('resize', function () {
     const playerWrapper = document.getElementById('player');
     const playerWidth = playerWrapper.getBoundingClientRect().width;
@@ -34,15 +33,12 @@ window.addEventListener('resize', function () {
 });
 let interval = null;
 function onPlayerStateChange(event) {
-    // Check if player state is PLAYING
     if (event.data === YT.PlayerState.PLAYING) {
         interval = setInterval(function () {
             var currentTime = player.getCurrentTime();
             endTime = document.getElementById('slider2').value;
             console.log(`current time: ${currentTime}>=endTime: ${endTime}?${currentTime >= endTime}`);
-            // Check if current playback time is greater than or equal to the desired time
             if (currentTime >= endTime) {
-                // Do something when user reaches the desired point in the video
                 player.seekTo(startTime);
             }
         }, 100);
@@ -59,7 +55,6 @@ function onPlayerReady(event) {
     const playerWidth = playerWrapper.offsetWidth;
     const playerHeight = playerWidth * 9 / 16;
     player.setSize(playerWidth, playerHeight);
-    //alert("ready:"+player.getDuration());
     let length = Number(player.getDuration() - 1);
     slider1.max = length;
     slider1.value = 0;
@@ -74,11 +69,9 @@ function onPlayerReady(event) {
 }
 
 function fancyTimeFormat(duration) {
-    // Hours, minutes and seconds
     const hrs = ~~(duration / 3600);
     const mins = ~~((duration % 3600) / 60);
     const secs = ~~duration % 60;
-    // Output like "1:01" or "4:03:59" or "123:03:59"
     let ret = "";
     if (hrs > 0) {
         ret += "" + hrs + ":" + (mins < 10 ? "0" : "");
@@ -88,32 +81,25 @@ function fancyTimeFormat(duration) {
     return ret;
 }
 function timeToSeconds(timeString) {
-    var timeParts = timeString.split(":"); // Split the time string into parts
-
-    // Initialize hours, minutes, and seconds to 0
+    var timeParts = timeString.split(":"); 
     var hours = 0;
     var minutes = 0;
     var seconds = 0;
 
-    // Check the number of time parts and assign values accordingly
     if (timeParts.length === 1) {
-        // If there are 1 parts, assume the format is "SS"
-        seconds = parseFloat(timeParts[0]); // Extract seconds
+        seconds = parseFloat(timeParts[0]);
     } else if (timeParts.length === 2) {
-        // If there are 2 parts, assume the format is "MM:SS"
-        minutes = parseFloat(timeParts[0]); // Extract minutes
-        seconds = parseFloat(timeParts[1]); // Extract seconds
+        minutes = parseFloat(timeParts[0]); 
+        seconds = parseFloat(timeParts[1]); 
     } else if (timeParts.length === 3) {
-        // If there are 3 parts, assume the format is "HH:MM:SS"
-        hours = parseFloat(timeParts[0]); // Extract hours
-        minutes = parseFloat(timeParts[1]); // Extract minutes
-        seconds = parseFloat(timeParts[2]); // Extract seconds
+        hours = parseFloat(timeParts[0]); 
+        minutes = parseFloat(timeParts[1]); 
+        seconds = parseFloat(timeParts[2]); 
     } else {
-        // If the number of parts is not 2 or 3, return NaN to indicate invalid input
         return NaN;
     }
-    var totalSeconds = (hours * 3600) + (minutes * 60) + seconds; // Calculate total seconds
-    return totalSeconds; // Return the total seconds
+    var totalSeconds = (hours * 3600) + (minutes * 60) + seconds; 
+    return totalSeconds; 
 }
 function getVideoId(url) {
     const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
