@@ -20,8 +20,10 @@
         <br>
         <label for="videoloop">Sección del video:</label>
         <div id="videoloop" class="slider">
-            <input id="slider1" type="range" min="0" max="100" value="0" oninput="checkMinSliderValue(event)">
-            <input id="slider2" type="range" min="0" max="100" value="100" oninput="checkMaxSliderValue(event)">
+            <div>
+                <input id="slider1" type="range" min="0" max="100" value="0" oninput="checkMinSliderValue(event)">
+                <input id="slider2" type="range" min="0" max="100" value="100" oninput="checkMaxSliderValue(event)">
+            </div>
         </div>
 
         <div style="text-align: left;">
@@ -37,12 +39,15 @@
 
         <label for="videospeed">Velocidad del video:</label>
         <div id="videospeed" class="slider">
-            <input id="slider3" type="range" step="0.05" min="0.25" max="2" value="1.0" oninput="checkSliderValue(event)">
+            <div>
+                <input id="slider3" type="range" step="0.05" min="0.25" max="2" value="1.0"
+                    oninput="checkSliderValue(event)">
+            </div>
         </div>
 
         <div style="text-align: left;">
             <label for="start">Velocidad:</label>
-            <input type="number" step="0.05" min="0.25" max="2" value="1"  id="speed" placeholder='Insert speed' 
+            <input type="number" step="0.05" min="0.25" max="2" value="1" id="speed" placeholder='Insert speed'
                 onchange="checkSpeedValue(event)">
         </div>
 
