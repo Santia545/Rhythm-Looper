@@ -4,7 +4,6 @@ const inputStop = document.getElementById('stop');
 const inputSpeed = document.getElementById('speed');
 
 $('#url').on('change', function () {
-    alert("change");
     var inputValue = $(this).val();
     videoId = getVideoId(inputValue);
     player.destroy();
