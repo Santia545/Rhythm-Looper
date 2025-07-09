@@ -63,6 +63,7 @@ function onPlayerReady(event) {
     slider2.value = length;
     startTime = 0;
     endTime = length;
+    document.getElementById('start').value = fancyTimeFormat(0);
     document.getElementById('stop').value = fancyTimeFormat(length);
     document.getElementById('slider2').value = length;
 
@@ -81,7 +82,7 @@ function fancyTimeFormat(duration) {
     return ret;
 }
 function timeToSeconds(timeString) {
-    var timeParts = timeString.split(":"); 
+    var timeParts = timeString.split(":");
     var hours = 0;
     var minutes = 0;
     var seconds = 0;
@@ -89,17 +90,17 @@ function timeToSeconds(timeString) {
     if (timeParts.length === 1) {
         seconds = parseFloat(timeParts[0]);
     } else if (timeParts.length === 2) {
-        minutes = parseFloat(timeParts[0]); 
-        seconds = parseFloat(timeParts[1]); 
+        minutes = parseFloat(timeParts[0]);
+        seconds = parseFloat(timeParts[1]);
     } else if (timeParts.length === 3) {
-        hours = parseFloat(timeParts[0]); 
-        minutes = parseFloat(timeParts[1]); 
-        seconds = parseFloat(timeParts[2]); 
+        hours = parseFloat(timeParts[0]);
+        minutes = parseFloat(timeParts[1]);
+        seconds = parseFloat(timeParts[2]);
     } else {
         return NaN;
     }
-    var totalSeconds = (hours * 3600) + (minutes * 60) + seconds; 
-    return totalSeconds; 
+    var totalSeconds = (hours * 3600) + (minutes * 60) + seconds;
+    return totalSeconds;
 }
 function getVideoId(url) {
     const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
