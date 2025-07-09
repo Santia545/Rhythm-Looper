@@ -1,6 +1,7 @@
 # Rhythm Looper
 
 A simple web application for looping sections of YouTube videos, adjusting playback speed, and setting custom loop points. Useful for practicing music or analyzing video segments.
+This is my implementation of an original idea by Rachelf [Link](https://www.youtube.com/watch?v=jJydPfviqms)
 
 ## Features
 
