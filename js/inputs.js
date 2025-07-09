@@ -1,4 +1,3 @@
-
 const inputStart = document.getElementById('start');
 const inputStop = document.getElementById('stop');
 const inputSpeed = document.getElementById('speed');
